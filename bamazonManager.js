@@ -19,7 +19,7 @@ var connection = mysql.createConnection({
     user: "root",
 
     // Your password
-    password: "Pollito#2",
+    password: "",
     database: "bamazon"
 });
 start();
@@ -102,18 +102,15 @@ function start() {
 
         else if (answer.managerSite === "View Low Inventory"){
            showItemList2(start);
-        //    start();
-           //connection.end();
         }
 
 
-       else if (answer.managerSite === "Add to Inventory"){
-            showItemList2(addStock);
-            // addStock();
-            
-            
+        else if (answer.managerSite === "Add to Inventory"){
+            showItemList2(addStock);   
          }
-        
+        else if (answer.managerSite === "Add New Product"){
+
+        }
         else if (answer.managerSite === "EXIT"){
             connection.end();
         }
