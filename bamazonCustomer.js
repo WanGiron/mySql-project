@@ -39,7 +39,7 @@ function showItemList() {
             t.cell('Description', product.product_name) 
             t.cell('Category', product.department_name)
             t.cell('Price, USD', product.price)
-            t.cell('Stock', product.stock_quantity)
+            //t.cell('Stock', product.stock_quantity)
             t.newRow()
         })
         console.log(t.toString())

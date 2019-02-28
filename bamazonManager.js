@@ -52,13 +52,13 @@ function showItemList() {
         t.newRow()
     })
     console.log(t.toString())
-    connection.end();
+    start();
     });
 
 }
 
 // function to see low inventory
-function showItemList2() {
+function showItemList2(callback) {
     console.log("Low stock below!");
     connection.query("SELECT * FROM items WHERE stock_quantity < 100 ", function (err, result, fields) {
         if (err){ 
@@ -78,7 +78,7 @@ function showItemList2() {
         t.newRow()
     })
     console.log(t.toString())
-    //connection.end();
+    callback();
     });
 }
 
@@ -101,14 +101,15 @@ function start() {
 
 
         else if (answer.managerSite === "View Low Inventory"){
-           showItemList2();
-           
+           showItemList2(start);
+        //    start();
+           //connection.end();
         }
 
 
        else if (answer.managerSite === "Add to Inventory"){
-            showItemList2();
-            addStock();
+            showItemList2(addStock);
+            // addStock();
             
             
          }
@@ -130,6 +131,7 @@ function addNewProduct(){
     // function to add more stock
 function addStock(){
         //connectionDb();
+        
         inquirer
     .prompt([
         {
@@ -164,9 +166,9 @@ function addStock(){
                         id : answer.ID
                     }
                 ])
-                console.log(aQ + "stock added to ID # " + answer.ID);
+                console.log(aQ + "_Stock added to ID # " + answer.ID);
                 console.log("_____________________________________________");
-                connection.end();
+              start();
 
 
     })
