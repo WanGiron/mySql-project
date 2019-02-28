@@ -23,6 +23,8 @@ VALUE
  ("Keyboard", "Electronics", 150.00, 40),
  ("Mouse", "Electronics", 100.00, 40);
 
-SELECT * FROM items
+SELECT * FROM items;
+
+SELECT * FROM items WHERE stock_quantity < 100;
 
 
