@@ -11,3 +11,4 @@ for manager (view all stock, view low stock( < 5), add new product, add more sto
 * Type command node bamazonManager.js then just follow the instructions.
 
 
+

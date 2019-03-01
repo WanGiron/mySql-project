@@ -6,6 +6,7 @@ var mysql = require("mysql");
 var inquirer = require("inquirer");
 var Table = require("easy-table");
 var result = [];
+var newPrice;
 
 
 //connection with database
@@ -25,7 +26,7 @@ var connection = mysql.createConnection({
 start();
 
 function connectionDb() {
-    connection.query("SELECT * FROM items WHERE stock_quantity < 100 ", function (err, result, fields) {
+    connection.query("SELECT * FROM items", function (err, result, fields) {
         if (err){ 
             console.error(err.message);
         }
@@ -108,10 +109,13 @@ function start() {
         else if (answer.managerSite === "Add to Inventory"){
             showItemList2(addStock);   
          }
-        else if (answer.managerSite === "Add New Product"){
 
+        else if (answer.managerSite === "Add New Product"){
+            showItemList2(addNewProduct);
         }
+
         else if (answer.managerSite === "EXIT"){
+            
             connection.end();
         }
 
@@ -119,22 +123,13 @@ function start() {
 }
 
     //function to add new product
-function addNewProduct(){
-    connectionDb()
-
- };
-
-
-    // function to add more stock
 function addStock(){
-        //connectionDb();
-        
-        inquirer
+    inquirer
     .prompt([
         {
           name: "ID",
-          type: "input",
-          message: "Bamazon online store, please enter item ID number:"
+          type: "List",
+          message: "Please select ID :"
         },
         {
           name: "quantity",
@@ -169,9 +164,55 @@ function addStock(){
 
 
     })
-    
-    
-            
+
+
+ };
+
+
+    // function to add more stock
+function addNewProduct(){
+        //connectionDb();
+        inquirer
+    .prompt([
+        {
+          name: "name",
+          type: "input",
+          message: "Add product name:"
+        },
+
+        {
+            name: "department",
+            type: "input",
+            message: "Please enter category: "
+          },
+
+        {
+          name: "Price",
+          type: "number",
+          message: "Please enter price: "
+        },
+
+        {
+            name: "Stock",
+            type: "number",
+            message: "Please enter initial stock: "
+        }
+
+    ])
+    //to update data base afer a transaction
+    .then(function(answer){
+        var newNumber = parseFloat(answer.Price);
+        connection.query("INSERT INTO items (product_name, department_name, price, stock_quantity) VALUES (?,?,?,?)",
+        
+        [ 
+            answer.name, 
+            answer.department, 
+            newNumber, 
+            answer.Stock
+        ])
+        console.log("done");
+        
+    })
 }
 
     
