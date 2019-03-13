@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
     user: "root",
 
     // Your password
-    password: "",
+    password: "Pollito#2",
     database: "bamazon"
 });
 start();
@@ -211,6 +211,7 @@ function addNewProduct(){
             answer.Stock
         ])
         console.log("done");
+        start();
         
     })
 }

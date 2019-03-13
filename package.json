@@ -1,0 +1,26 @@
+{
+  "name": "mysql-project",
+  "version": "1.0.0",
+  "description": "Welcome to bamazon store:",
+  "main": "bamazonCustomer.js",
+  "dependencies": {
+    "easy-table": "^1.1.1",
+    "inquirer": "^6.2.2",
+    "mysql": "^2.16.0",
+    "requirer": "^0.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WanGiron/mySql-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WanGiron/mySql-project/issues"
+  },
+  "homepage": "https://github.com/WanGiron/mySql-project#readme"
+}
